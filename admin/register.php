@@ -150,7 +150,7 @@ include('navbar.php');
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" name="registerbtn" class="btn btn-primary">Save</button>
+          <button type="submit" name="registerbtn" class="btn btn-dark">Save</button>
         </div>
       </form>
     </div>
@@ -163,7 +163,7 @@ include('navbar.php');
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <h6 class="m-0 font-weight-bold text-primary">Product List
-        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addadminprofile">
+        <button type="button" class="btn btn-secondary float-right" data-toggle="modal" data-target="#addadminprofile">
           Add Product
         </button>
       </h6>
@@ -194,8 +194,8 @@ include('navbar.php');
                       <td>{$row['PROD_NAME']}</td>
                       <td>{$row['PROD_PRICE']}</td>
                       <td width = 15%>
-                        <button type='button' class='btn btn-success edit-btn' data-product-id='{$row['PROD_ID']}' data-toggle='modal' data-target='#editproduct'>Edit</button>
-                        <button type='button' class='btn btn-danger edit-btn' data-product-id='{$row['PROD_ID']}' data-toggle='modal' data-target='#deleteproduct'>Delete</button>
+                        <button type='button' class='btn btn-secondary edit-btn' data-product-id='{$row['PROD_ID']}' data-toggle='modal' data-target='#editproduct'>Edit</button>
+                        <button type='button' class='btn btn-dark edit-btn' data-product-id='{$row['PROD_ID']}' data-toggle='modal' data-target='#deleteproduct'>Delete</button>
                       </td>
                     </tr>";
             }

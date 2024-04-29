@@ -12,14 +12,13 @@
 
   ?>
   <!-- Sidebar -->
-  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+  <ul class="navbar-nav bg-dark text-white sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="register.php">
-      <div class="sidebar-brand-icon rotate-n-15">
-        <i class="fas fa-shopping-bag"></i>
+      <div class="">
+        <img src="./img/logo.png">
       </div>
-      <div class="sidebar-brand-text mx-3"> E<sup>commerce</sup></div>
     </a>
 
     <!-- Divider -->

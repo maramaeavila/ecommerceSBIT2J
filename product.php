@@ -213,12 +213,12 @@ session_start();
             url: 'getAllProducts.php',
             type: 'GET',
             dataType: 'json',
-            success: function (data) {
-                if(data.success) {
+            success: function(data) {
+                if (data.success) {
                     var html = ''
                     $.each(data.data, function(index, element) {
                         console.log(element)
-                        html += '<div class="prod"> <img src="./uploads/'+ element.PROD_IMAGE +'" alt='+ element.PROD_NAME +'> <div class="prod-info">  <h4 class="prod-title">' + element.PROD_NAME + '</h4> <p class="prod-price">₱ '+ element.PROD_PRICE +'</p><a class="prod-btn" href="single_product.php?id=' + element.PROD_ID + '">Add To Cart</a></div></div>';
+                        html += '<div class="prod"> <img src="./uploads/' + element.PROD_IMAGE + '" alt=' + element.PROD_NAME + '> <div class="prod-info">  <h4 class="prod-title">' + element.PROD_NAME + '</h4> <p class="prod-price">₱ ' + element.PROD_PRICE + '</p><a class="prod-btn" href="single_product.php?id=' + element.PROD_ID + '">Add To Cart</a></div></div>';
                     });
                     document.getElementById('prodSlider').innerHTML = html
                 }
