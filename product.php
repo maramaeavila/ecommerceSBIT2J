@@ -116,7 +116,7 @@ session_start();
 
             <hr>
             <div class="all-prod" id="prodSlider">
-                <div onclick="window.location.href='single_product.html';" class="prod">
+                <div onclick="window.location.href='single_product.php';" class="prod">
                     <img src="./imgs/products/itemld1.png">
                     <div class="prod-info">
                         <h4 class="prod-title">Item 1</h4>
@@ -125,7 +125,7 @@ session_start();
                     </div>
                 </div>
 
-                <div onclick="window.location.href='single_product.html';" class="prod">
+                <div onclick="window.location.href='single_product.php';" class="prod">
                     <img src="./imgs/products/itemld1.png">
                     <div class="prod-info">
                         <h4 class="prod-title">Item 1</h4>
@@ -134,7 +134,7 @@ session_start();
                     </div>
                 </div>
 
-                <div onclick="window.location.href='single_product.html';" class="prod">
+                <div onclick="window.location.href='single_product.php';" class="prod">
                     <img src="./imgs/products/itemld1.png">
                     <div class="prod-info">
                         <h4 class="prod-title">Item 1</h4>
@@ -143,7 +143,7 @@ session_start();
                     </div>
                 </div>
 
-                <div onclick="window.location.href='single_product.html';" class="prod">
+                <div onclick="window.location.href='single_product.php';" class="prod">
                     <img src="./imgs/products/itemld1.png">
                     <div class="prod-info">
                         <h4 class="prod-title">Item 1</h4>
@@ -152,7 +152,7 @@ session_start();
                     </div>
                 </div>
 
-                <div onclick="window.location.href='single_product.html';" class="prod">
+                <div onclick="window.location.href='single_product.php';" class="prod">
                     <img src="./imgs/products/itemld1.png">
                     <div class="prod-info">
                         <h4 class="prod-title">Item 1</h4>
@@ -161,7 +161,7 @@ session_start();
                     </div>
                 </div>
 
-                <div onclick="window.location.href='single_product.html';" class="prod">
+                <div onclick="window.location.href='single_product.php';" class="prod">
                     <img src="./imgs/products/itemld1.png">
                     <div class="prod-info">
                         <h4 class="prod-title">Item 1</h4>
@@ -170,7 +170,7 @@ session_start();
                     </div>
                 </div>
 
-                <div onclick="window.location.href='single_product.html';" class="prod">
+                <div onclick="window.location.href='single_product.php';" class="prod">
                     <img src="./imgs/products/itemld1.png">
                     <div class="prod-info">
                         <h4 class="prod-title">Item 1</h4>
@@ -179,7 +179,7 @@ session_start();
                     </div>
                 </div>
 
-                <div onclick="window.location.href='single_product.html';" class="prod">
+                <div onclick="window.location.href='single_product.php';" class="prod">
                     <img src="./imgs/products/itemld1.png">
                     <div class="prod-info">
                         <h4 class="prod-title">Item 1</h4>
@@ -188,7 +188,7 @@ session_start();
                     </div>
                 </div>
 
-                <div onclick="window.location.href='single_product.html';" class="prod">
+                <div onclick="window.location.href='single_product.php';" class="prod">
                     <img src="./imgs/products/itemld1.png">
                     <div class="prod-info">
                         <h4 class="prod-title">Item 1</h4>
@@ -197,7 +197,7 @@ session_start();
                     </div>
                 </div>
 
-                <div onclick="window.location.href='single_product.html';" class="prod">
+                <div onclick="window.location.href='single_product.php';" class="prod">
                     <img src="./imgs/products/itemld1.png">
                     <div class="prod-info">
                         <h4 class="prod-title">Item 1</h4>

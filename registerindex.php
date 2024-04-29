@@ -24,42 +24,6 @@ session_start();
     <?php
     include "header.php";
     ?>
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 fixed-top">
-        <div class="container-fluid">
-            <img src="./imgs/logo.png">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse nav-buttons" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="aboutus.html">About</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="product.html">Products</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="contactus.html">Contact Us</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="cart.html"><i class="fa fa-cart-shopping white"></i></a>
-                        <a href="account.html"><i class="fa fa-user-circle white"></i></a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <a href="login.html" class="btn btn-dark" role="button">Login</a>
-                </form>
-            </div>
-        </div>
-    </nav> -->
 
     <!-- Register -->
     <section id="register" class="my-5 py-5">
@@ -102,7 +66,7 @@ session_start();
                     <input type="button" onclick="registerAccount()" class="btn" id="register-btn" value="Signup">
                 </div>
                 <div class="form-group">
-                    <a href="login.html" id="login-url" class="btn">Do you have an account? Login</a>
+                    <a href="login.php" id="login-url" class="btn">Do you have an account? Login</a>
                 </div>
             </form>
         </div>
@@ -117,25 +81,6 @@ session_start();
 
     </section>
 
-    <!-- contactus -->
-    <!-- <section id="contactus">
-        <div class="contact-content">
-            <div class="contact-info">
-                <div><i class="fa-solid fa-location-dot"></i> Quezon City, Philippines</div>
-                <div><i class="fa-solid fa-envelope"></i>renzandco@gmail.com</div>
-                <div><i class="fa-solid fa-mobile"></i>0000-000-000</div>
-            </div>
-            <div class="contact-form">
-                <h2>Contact Us</h2>
-                <form class="contact" action="" method="post">
-                    <input type="text" name="name" class="text-box" placeholder="Your Name" required>
-                    <input type="email" name="email" class="text-box" placeholder="Your Email" required>
-                    <textarea name="message" rows="5" placeholder=""></textarea>
-                </form>
-                <button class="btn btn-dark" type="submit">SEND</button>
-            </div>
-        </div>
-    </section> -->
     <?php
     include "Footercontactus.php";
     ?>
@@ -185,19 +130,13 @@ session_start();
                 $("#register-confirmpassword").focus();
                 return false;
             }
-            // else if(validateEmail($("#register-email").val()))
-            // {
-            //     alert("Invalid Email Address!");
-            //     $("#register-email").focus();
-            //     return false;
-            // }
 
             $.ajax({
                 url: 'register.php',
                 data: $("#register-form").serialize(),
                 type: "POST",
                 success: function(msg) {
-                    if (msg == "success") window.location.href = "login.html";
+                    if (msg == "success") window.location.href = "login.php";
                     else alert(msg);
                 }
             });
