@@ -97,7 +97,7 @@ session_start();
                 success: function(msg) {
                     console.log(msg);
                     if (msg == "success") window.location.href = "index.php";
-                    else if (msg == "successadmin") window.location.href = "./admin/index.php";
+                    else if (msg == "successadmin") window.location.href = "./admin/register.php";
                     else alert(msg);
                 }
             });
