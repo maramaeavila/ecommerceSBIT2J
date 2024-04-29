@@ -1,3 +1,6 @@
+<?php
+$uusnr = $_SESSION['username'];
+?>
 <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 fixed-top">
     <div class="container-fluid">
         <img src="./imgs/logo.png">
@@ -66,7 +69,9 @@ navbar -->
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <?php if ($_SESSION['username'] == "") { ?><a href="login.php" class="btn btn-dark" role="button">Login</a><?php } ?>
+
+                <a href="login.php" class="btn btn-dark" role="button" <?= ($uusnr ? " style='display:none;' " : "") ?>>Login</a>
+
 
             </form>
         </div>

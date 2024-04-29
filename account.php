@@ -1,6 +1,15 @@
 <?php
 include "./config/connection.php";
 session_start();
+
+
+$sql = "SELECT * FROM useraccount WHERE username=:usernamex";
+
+$stid = oci_parse($conn, $sql);
+oci_bind_by_name($stid, ':usernamex', $_SESSION['username']);
+oci_execute($stid);
+$row = oci_fetch_assoc($stid);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,10 +39,10 @@ session_start();
                 <h3 class="font-weight-bold">Account Info</h3>
                 <hr class="mx-auto">
                 <div class="account-info">
-                    <p>Name<span>Wency Mendozq</span></p>
-                    <p>Email<span>wency.mendoza@gmail.com</span></p>
+                    <p>Name: <span><?= $row['NAME'] ?></span></p>
+                    <p>Email: <span><?= $row['NAME'] ?></span></p>
                     <p><a href="" id="order-btn">My Orders</a></p>
-                    <p><a href="" id="logout-btn">Logout</a></p>
+                    <p><a href="logout.php" id="logout-btn">Logout</a></p>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 sol-sm-12">
@@ -41,6 +50,7 @@ session_start();
                     <h3>Change Password</h3>
                     <hr class="mx-auto">
                     <div class="form-group">
+                        <input type="hidden" class="form-control" id="username" name="username" value="<?= $_SESSION['username'] ?>">
                         <label>Password</label>
                         <input type="password" class="form-control" id="account-password" name="password" required>
                     </div>
@@ -49,7 +59,7 @@ session_start();
                         <input type="password" class="form-control" id="account-confirmpassword" name="confirmpassword" required>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Change Password" class="btn" id="changepass-btn">
+                        <input type="button" onclick='changepw();' value="Change Password" class="btn" id="changepass-btn">
                     </div>
                 </form>
             </div>
@@ -124,5 +134,33 @@ session_start();
 
 
 </body>
+<script>
+    function changepw() {
+
+        if ($("#register-password").val() == "") {
+            alert("Please input Password");
+            $("#register-password").focus();
+            return false;
+        } else if ($("#register-confirmpassword").val() == "") {
+            alert("Please input Confirm Password");
+            $("#register-confirmpassword").focus();
+            return false;
+        } else if ($("#register-confirmpassword").val() != $("#register-password").val()) {
+            alert("Password must be same with confirm password!");
+            $("#register-confirmpassword").focus();
+            return false;
+        }
+
+        $.ajax({
+            url: 'changepassword.php',
+            data: $("#account-form").serialize(),
+            type: "POST",
+            success: function(msg) {
+                alert(msg);
+            }
+        });
+
+    }
+</script>
 
 </html>
