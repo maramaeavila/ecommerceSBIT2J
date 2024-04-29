@@ -1,0 +1,57 @@
+--------------------------------------------------------
+--  File created - Tuesday-April-30-2024   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Table ORDER_DETAILS
+--------------------------------------------------------
+
+  CREATE TABLE "SYSTEM"."ORDER_DETAILS" 
+   (	"ID" NUMBER, 
+	"ORDER_ID" NUMBER, 
+	"PRODUCT_ID" NUMBER, 
+	"QUANTITY" NUMBER
+   ) PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+REM INSERTING into SYSTEM.ORDER_DETAILS
+SET DEFINE OFF;
+Insert into SYSTEM.ORDER_DETAILS (ID,ORDER_ID,PRODUCT_ID,QUANTITY) values (6,7,1,3);
+Insert into SYSTEM.ORDER_DETAILS (ID,ORDER_ID,PRODUCT_ID,QUANTITY) values (8,9,1,4);
+Insert into SYSTEM.ORDER_DETAILS (ID,ORDER_ID,PRODUCT_ID,QUANTITY) values (7,8,1,2);
+--------------------------------------------------------
+--  DDL for Index SYS_C007012
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "SYSTEM"."SYS_C007012" ON "SYSTEM"."ORDER_DETAILS" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM" ;
+--------------------------------------------------------
+--  DDL for Trigger ORDER_DETAILS_ID_TRIGGER
+--------------------------------------------------------
+
+  CREATE OR REPLACE TRIGGER "SYSTEM"."ORDER_DETAILS_ID_TRIGGER" 
+BEFORE INSERT ON order_details
+FOR EACH ROW
+BEGIN
+    SELECT order_details_id_seq.NEXTVAL INTO :new.id FROM dual;
+END;
+/
+ALTER TRIGGER "SYSTEM"."ORDER_DETAILS_ID_TRIGGER" ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ORDER_DETAILS
+--------------------------------------------------------
+
+  ALTER TABLE "SYSTEM"."ORDER_DETAILS" ADD PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "SYSTEM"  ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table ORDER_DETAILS
+--------------------------------------------------------
+
+  ALTER TABLE "SYSTEM"."ORDER_DETAILS" ADD CONSTRAINT "FK_ORDER_ID" FOREIGN KEY ("ORDER_ID")
+	  REFERENCES "SYSTEM"."ORDERS" ("ID") ENABLE;
