@@ -90,7 +90,7 @@ session_start();
                     <input type="text" class="form-control" id="checkout-address" name="address" placeholder="Home Address" required>
                 </div>
                 <div class="form-group checkout-btn-container">
-                    <input type="submit" class="btn" id="checkout-btn" value="Checkout">
+                    <input type="button" class="btn" id="checkout-btn" value="Checkout" onclick="checkout()">
                 </div>
             </form>
         </div>
@@ -133,7 +133,43 @@ session_start();
     <!-- Script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $.ajax({
+            url: 'getUserDetails.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function(result) {
+                if(result.success) {
+                    console.log(result.data)
+                    document.getElementById('checkout-name').value = result.data.NAME
+                    document.getElementById('checkout-email').value = result.data.EMAIL
+                    document.getElementById('checkout-contactno').value = result.data.CONTACTNUMBER
+                    document.getElementById('checkout-city').value = result.data.CITY
+                    document.getElementById('checkout-address').value = result.data.ADDRESS
+                }
+            }
+        });
 
+        function checkout() {
+            $.ajax({
+                url: 'checkoutOrder.php',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    name: document.getElementById('checkout-name').value,
+                    email: document.getElementById('checkout-email').value,
+                    contactnumber: document.getElementById('checkout-contactno').value,
+                    city: document.getElementById('checkout-city').value,
+                    address: document.getElementById('checkout-address').value
+                },
+                success: function (result) {
+                    if(result.success) {
+                        window.location.href = 'account.php'
+                    }
+                }
+            });
+        }
+    </script>
 
 </body>
 

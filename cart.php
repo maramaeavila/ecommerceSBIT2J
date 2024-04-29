@@ -98,7 +98,7 @@ session_start();
         </div>
 
         <div class="checkout-container">
-            <button class="btn checkout-btn">Checkout</button>
+            <button class="btn checkout-btn" onclick="checkout()">Checkout</button>
         </div>
     </section>
 
@@ -192,7 +192,7 @@ session_start();
                     var total = 0;
                     console.log(result.data)
                     $.each(result.data, function(index, row) {
-                        html += '<tr><td><div class="prod-info"><img src="./uploads/'+row.PROD_IMAGE +'"><div><p>' + row.PROD_NAME + '</p><small><span>₱</span>' + row.PROD_PRICE + '</small><br><a class="remove-btn" href="#" id="remove-cart-item" data-record-id="' + row.ID + '">Remove</a></div></div></td><td><input type="number" value="'+row.QUANTITY+'" id="cart-quantity" data-record-id="' + row.ID + '"></td><td><span>₱</span><span class="prod_price">'+row.TOTAL+'</span></td></tr>';
+                        html += '<tr><td><div class="prod-info"><img src="./uploads/'+row.PROD_IMAGE +'"><div><p>' + row.PROD_NAME + '</p><small><span>₱</span>' + row.PROD_PRICE + '</small><br><a class="remove-btn" href="#" id="remove-cart-item" data-record-id="' + row.ID + '">Remove</a></div></div></td><td><input type="number" value="'+row.QUANTITY+'" id="cart-quantity" data-record-id="' + row.ID + '" data-record-price="' + row.PROD_PRICE + '"></td><td><span>₱</span><span class="prod_price">'+row.TOTAL+'</span></td></tr>';
                         total += parseInt(row.TOTAL);
                     });
                     document.getElementById('cart-body').innerHTML = html;
@@ -228,15 +228,18 @@ session_start();
             });
         }
 
-        function updateCartItem(id, quantity) {
+        function updateCartItem(id, quantity, price) {
             $.ajax({
                 url: 'updateCartItem.php',
-                type: 'POST',
+                method: 'POST',
+                dataType: 'json',
                 data: {
                     id: id,
-                    quantity: quantity
+                    quantity: quantity,
+                    total: quantity * price
                 },
                 success: function(result) {
+                    console.log(result);
                     if(result.success) {
                         window.location.reload();
                     }
@@ -251,12 +254,15 @@ session_start();
                 input.addEventListener('change', function (e) {
                     var quantity = e.target.value;
                     var cart_id = input.getAttribute('data-record-id');
-                    updateCartItem(cart_id, quantity);
+                    var price = input.getAttribute('data-record-price');
+                    updateCartItem(cart_id, quantity, price);
                 });
             });
         }
 
-        
+        function checkout() {
+            window.location.href = 'checkout.php';
+        }
 
        
     </script>
