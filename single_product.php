@@ -221,11 +221,13 @@ session_start();
         });
 
         function increment() {
-           document.getElementById('qty').stepUp(1);
+            document.getElementById('qty').stepUp(1);
         }
+
         function decrement() {
-           document.getElementById('qty').stepDown(1);
+            document.getElementById('qty').stepDown(1);
         }
+
         function addToCart() {
             const qty = $('#qty').val();
             if (qty < 1) {
@@ -241,21 +243,21 @@ session_start();
                     },
                     type: 'POST',
                     success: function(msg) {
-                        if(msg == 'success') alert('Added')
+                        if (msg == 'success') alert('Added')
                         else alert(msg)
                     }
                 })
             }
         }
-        
+
         $.ajax({
             url: 'getProduct.php',
             data: {
-                prod_id: <?= $_GET['id'] ?>
+                prod_id: "<?= $_GET['id'] ?>"
             },
             dataType: 'json',
-            success: function (result) {
-                if(result.success) {
+            success: function(result) {
+                if (result.success) {
                     console.log(result.data);
                     product = result.data;
                     document.getElementById('product-name').innerHTML = result.data.PROD_NAME;
