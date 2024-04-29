@@ -24,43 +24,6 @@ session_start();
 
 <body>
 
-    <!-- navbar -->
-    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 fixed-top">
-        <div class="container-fluid">
-            <img src="./imgs/logo.png">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse nav-buttons" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.php">Home</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="aboutus.html">About</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="product.html">Products</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="contactus.html">Contact Us</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="cart.html"><i class="fa fa-cart-shopping white"></i></a>
-                        <a href="account.html"><i class="fa fa-user-circle white"></i></a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <a href="login.html" class="btn btn-dark" role="button">Login</a>
-                </form>
-            </div>
-        </div>
-    </nav> -->
     <?php
     include "header.php";
     ?>
@@ -76,7 +39,7 @@ session_start();
                 <img class="img-fluid" src="./imgs/men.png">
                 <div class="details">
                     <h2>Men</h2>
-                    <button class="btn btn-dark">Shop Now</button>
+                    <!-- <button class="btn btn-dark">Shop Now</button> -->
                 </div>
             </div>
             <!-- Women -->
@@ -84,7 +47,7 @@ session_start();
                 <img class="img-fluid" src="./imgs/women.png">
                 <div class="details">
                     <h2>Women</h2>
-                    <button class="btn btn-dark">Shop Now</button>
+                    <!-- <button class="btn btn-dark">Shop Now</button> -->
                 </div>
             </div>
             <!-- Kid -->
@@ -92,7 +55,7 @@ session_start();
                 <img class="img-fluid" src="./imgs/kid.PNG">
                 <div class="details">
                     <h2>Kid</h2>
-                    <button class="btn btn-dark">Shop Now</button>
+                    <!-- <button class="btn btn-dark">Shop Now</button> -->
                 </div>
             </div>
         </div>
@@ -102,7 +65,7 @@ session_start();
     <section id="products">
         <div>
             <h2>Our Products</h2>
-            <div class="prod-cat">
+            <!-- <div class="prod-cat">
                 <nav id="prodcat">
                     <a href="All">All</a>
                     <a href="T-Shirt">T-Shirt</a>
@@ -112,7 +75,7 @@ session_start();
                     <a href="Dress">Dress</a>
                     <a href="Undergarments">Undergarments</a>
                 </nav>
-            </div>
+            </div> -->
 
             <hr>
             <div class="all-prod" id="prodSlider">
@@ -139,25 +102,6 @@ session_start();
         </div>
     </section>
 
-    <!-- contactus -->
-    <!-- <section id="contactus">
-        <div class="contact-content">
-            <div class="contact-info">
-                <div><i class="fa-solid fa-location-dot"></i> Quezon City, Philippines</div>
-                <div><i class="fa-solid fa-envelope"></i>renzandco@gmail.com</div>
-                <div><i class="fa-solid fa-mobile"></i>0000-000-000</div>
-            </div>
-            <div class="contact-form">
-                <h2>Contact Us</h2>
-                <form class="contact" action="" method="post">
-                    <input type="text" name="name" class="text-box" placeholder="Your Name" required>
-                    <input type="email" name="email" class="text-box" placeholder="Your Email" required>
-                    <textarea name="message" rows="5" placeholder=""></textarea>
-                </form>
-                <button class="btn btn-dark" type="submit">SEND</button>
-            </div>
-        </div>
-    </section> -->
     <?php
     include "Footercontactus.php";
     ?>

@@ -80,7 +80,7 @@ session_start();
                 <img class="img-fluid" src="./imgs/men.png">
                 <div class="details">
                     <h2>Men</h2>
-                    <button class="btn btn-dark">Shop Now</button>
+                    <a href="product.php" class="btn btn-dark" role="button">Shop Now</a>
                 </div>
             </div>
             <!-- Women -->
@@ -88,7 +88,7 @@ session_start();
                 <img class="img-fluid" src="./imgs/women.png">
                 <div class="details">
                     <h2>Women</h2>
-                    <button class="btn btn-dark">Shop Now</button>
+                    <a href="product.php" class="btn btn-dark" role="button">Shop Now</a>
                 </div>
             </div>
             <!-- Kid -->
@@ -96,14 +96,14 @@ session_start();
                 <img class="img-fluid" src="./imgs/kid.PNG">
                 <div class="details">
                     <h2>Kid</h2>
-                    <button class="btn btn-dark">Shop Now</button>
+                    <a href="product.php" class="btn btn-dark" role="button">Shop Now</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Featured -->
-    <section id="featured" class="my-5 pb-5">
+    <!-- <section id="featured" class="my-5 pb-5">
         <div class="container text-center mt-5 py-5">
             <h3>Our Featured</h3>
             <hr>
@@ -208,7 +208,7 @@ session_start();
                 <i class="fa-solid fa-circle-chevron-right"></i>
             </button>
         </div>
-    </section>
+    </section> -->
 
     <!-- Banner -->
     <section id="banner">
