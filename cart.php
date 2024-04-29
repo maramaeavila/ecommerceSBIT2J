@@ -73,109 +73,26 @@ session_start();
         </div>
 
         <table class="mt-5 pt-5">
-            <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
-            </tr>
-            <tr>
-                <td>
-                    <div class="prod-info">
-                        <img src="./imgs/products/itemId1.png">
-                        <div>
-                            <p>Black Custom TShirt</p>
-                            <small><span>₱</span>399</small>
-                            <br>
-                            <a class="remove-btn" href="#">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <input type="number" value="1">
-                    <a class="edit-btn">Edit</a>
-                </td>
-                <td>
-                    <span>₱</span>
-                    <span class="prod_price">399</span>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="prod-info">
-                        <img src="./imgs/products/itemId2.png">
-                        <div>
-                            <p>Black Custom TShirt</p>
-                            <small><span>₱</span>399</small>
-                            <br>
-                            <a class="remove-btn" href="#">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <input type="number" value="1">
-                    <a class="edit-btn">Edit</a>
-                </td>
-                <td>
-                    <span>₱</span>
-                    <span class="prod_price">399</span>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="prod-info">
-                        <img src="./imgs/products/itemId3.png">
-                        <div>
-                            <p>Black Custom TShirt</p>
-                            <small><span>₱</span>399</small>
-                            <br>
-                            <a class="remove-btn" href="#">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <input type="number" value="1">
-                    <a class="edit-btn">Edit</a>
-                </td>
-                <td>
-                    <span>₱</span>
-                    <span class="prod_price">399</span>
-                </td>
-            </tr>
-
-            <tr>
-                <td>
-                    <div class="prod-info">
-                        <img src="./imgs/products/itemId4.png">
-                        <div>
-                            <p>Black Custom TShirt</p>
-                            <small><span>₱</span>399</small>
-                            <br>
-                            <a class="remove-btn" href="#">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <input type="number" value="1">
-                    <a class="edit-btn">Edit</a>
-                </td>
-                <td>
-                    <span>₱</span>
-                    <span class="prod_price">399</span>
-                </td>
-            </tr>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody id="cart-body">
+            </tbody>
         </table>
 
         <div class="cart-total">
             <table>
                 <tr>
                     <td>Subtotal</td>
-                    <td>₱ 399</td>
+                    <td id="cart-sub-total">₱ 399</td>
                 </tr>
                 <tr>
                     <td>Total</td>
-                    <td>₱ 399</td>
+                    <td id="cart-total">₱ 399</td>
                 </tr>
             </table>
         </div>
@@ -264,34 +181,84 @@ session_start();
             ]
         });
 
-        document.getElementById('prevSlide').addEventListener('click', function() {
-            $('#prodSlider').slick('slickPrev');
-        });
+        // fetch cart
+        $.ajax({
+            url: 'getCart.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function(result) {
+                if(result.success) {
+                    var html = '';
+                    var total = 0;
+                    console.log(result.data)
+                    $.each(result.data, function(index, row) {
+                        html += '<tr><td><div class="prod-info"><img src="./uploads/'+row.PROD_IMAGE +'"><div><p>' + row.PROD_NAME + '</p><small><span>₱</span>' + row.PROD_PRICE + '</small><br><a class="remove-btn" href="#" id="remove-cart-item" data-record-id="' + row.ID + '">Remove</a></div></div></td><td><input type="number" value="'+row.QUANTITY+'" id="cart-quantity" data-record-id="' + row.ID + '"></td><td><span>₱</span><span class="prod_price">'+row.TOTAL+'</span></td></tr>';
+                        total += parseInt(row.TOTAL);
+                    });
+                    document.getElementById('cart-body').innerHTML = html;
+                    document.getElementById('cart-sub-total').innerHTML ='₱ '+ total;
+                    document.getElementById('cart-total').innerHTML = '₱ '+ total;
 
-        document.getElementById('nextSlide').addEventListener('click', function() {
-            $('#prodSlider').slick('slickNext');
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            let section = document.querySelectorAll('section');
-            let navLinks = document.querySelectorAll('nav a');
-
-            window.onscroll = () => {
-                section.forEach(sec => {
-                    let top = window.scrollY;
-                    let offset = sec.offsetTop;
-                    let height = sec.offsetHeight;
-                    let id = sec.getAttribute('id');
-
-                    if (top >= offset && top < offset + height) {
-                        navLinks.forEach(links => {
-                            links.classList.remove('active');
-                            document.querySelector('nav a[href*=' + id + ']').classList.add('active');
-                        })
-                    }
-                })
+                    attachDeleteListener();
+                    attachChangeAmountListener();
+                }
             }
         });
+
+        function removeCartItem(id) {
+            $.ajax({
+                url: 'removeCartItem.php?id=' + id,
+                method: 'DELETE',
+                dataType: 'json',
+                success: function (result) {
+                    if(result.success) {
+                        window.location.reload();
+                    }
+                }
+            });
+        }
+
+        function attachDeleteListener() {
+            var removeButtons = document.querySelectorAll('#remove-cart-item');
+            removeButtons.forEach(function(button) {
+                button.addEventListener('click', function () {
+                    var cartId = button.getAttribute('data-record-id');
+                    removeCartItem(cartId);
+                });
+            });
+        }
+
+        function updateCartItem(id, quantity) {
+            $.ajax({
+                url: 'updateCartItem.php',
+                type: 'POST',
+                data: {
+                    id: id,
+                    quantity: quantity
+                },
+                success: function(result) {
+                    if(result.success) {
+                        window.location.reload();
+                    }
+                }
+            });
+        }
+
+        function attachChangeAmountListener() {
+            var cartInputs = document.querySelectorAll('#cart-quantity');
+            console.log(cartInputs);
+            cartInputs.forEach(function(input) {
+                input.addEventListener('change', function (e) {
+                    var quantity = e.target.value;
+                    var cart_id = input.getAttribute('data-record-id');
+                    updateCartItem(cart_id, quantity);
+                });
+            });
+        }
+
+        
+
+       
     </script>
 
 </body>
