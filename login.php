@@ -2,6 +2,48 @@
 <html lang="en">
 <?php
 session_start();
+
+// Function to validate user login
+function validateUserLogin($username, $password)
+{
+    // Your validation logic for regular users here
+    // Example: Check the database for the provided credentials
+}
+
+// Function to validate admin login
+function validateAdminLogin($username, $password)
+{
+    // Check if the provided credentials are for the admin
+    if ($username === "admin" && $password === "adminpassword") {
+        $_SESSION['admin'] = true;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// Check if the login request is for admin
+if (isset($_POST['adminLogin']) && $_POST['adminLogin'] === 'true') {
+    $username = $_POST['uname'];
+    $password = $_POST['pword'];
+
+    if (validateAdminLogin($username, $password)) {
+        echo "successadmin";
+    } else {
+        echo "Invalid admin credentials";
+    }
+    exit;
+}
+
+// Regular user login validation
+$username = $_POST['uname'];
+$password = $_POST['pword'];
+
+if (validateUserLogin($username, $password)) {
+    echo "success";
+} else {
+    echo "Invalid credentials";
+}
 ?>
 
 <head>
@@ -77,12 +119,15 @@ session_start();
                 type: "POST",
                 success: function(msg) {
                     console.log(msg);
-                    if (msg == "success") window.location.href = "index.php";
-                    else if (msg == "successadmin") window.location.href = "./admin/register.php";
-                    else alert(msg);
+                    if (msg == "success") {
+                        window.location.href = "index.php";
+                    } else if (msg == "successadmin") {
+                        window.location.href = "./admin/register.php";
+                    } else {
+                        alert(msg);
+                    }
                 }
             });
-
         }
     </script>
 

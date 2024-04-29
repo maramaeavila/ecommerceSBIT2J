@@ -1,5 +1,5 @@
 <?php
-$uusnr = $_SESSION['username'];
+$loggedIn = isset($_SESSION['username']);
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 fixed-top">
@@ -25,16 +25,18 @@ $uusnr = $_SESSION['username'];
                 <li class="nav-item">
                     <a class="nav-link" href="contactus.php">Contact Us</a>
                 </li>
-
-                <li class="nav-item">
-                    <a href="cart.php"><i class="fa fa-cart-shopping white"></i></a>
-                    <a href="account.php"><i class="fa fa-user-circle white"></i></a>
-                </li>
+                <?php if ($loggedIn) : ?>
+                    <li class="nav-item">
+                        <a href="cart.php"><i class="fa fa-cart-shopping white"></i></a>
+                        <a href="account.php"><i class="fa fa-user-circle white"></i></a>
+                    </li>
+                <?php endif; ?>
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 
-                <a href="login.php" class="btn btn-dark" role="button" <?= ($uusnr ? " style='display:none;' " : "") ?>>Login</a>
+                <a href="logout.php" class="btn btn-dark" role="button" <?= ($loggedIn ? "" : "style='display:none;'") ?>>Logout</a>
+                <a href="login.php" class="btn btn-dark" role="button" <?= ($loggedIn ? "style='display:none;'" : "") ?>>Login</a>
 
             </form>
         </div>
