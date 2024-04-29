@@ -23,21 +23,46 @@ session_start();
 </head>
 
 <body>
-
-    <!-- navbar -->
-
     <?php
     include "header.php";
     ?>
-    <!-- Home -->
-    <section id="home">
-        <div class="content">
-            <p>Limited Time Only</p>
-            <h1>Fashion</h1>
-            <h3>Look Your Best On your Best Day</h3>
-            <button id="btn-explore">Explore Now</button>
+    <!-- navbar -->
+    <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3 fixed-top">
+        <div class="container-fluid">
+            <img src="./imgs/logo.png">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse nav-buttons" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="product.html">Products</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="contactus.html">Contact Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="cart.html"><i class="fa fa-cart-shopping white"></i></a>
+                        <a href="account.html"><i class="fa fa-user-circle white"></i></a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <a href="login.html" class="btn btn-dark" role="button">Login</a>
+                </form>
+            </div>
         </div>
-    </section>
+    </nav> -->
 
     <!-- About Us -->
     <section id="aboutus">
@@ -69,147 +94,6 @@ session_start();
     </section>
 
 
-    <!-- Categories -->
-    <section id="categories" class="w-100">
-        <div>
-            <h1>Top Categories</h1>
-        </div>
-        <div class="row p-0 m-0">
-            <!-- Men -->
-            <div class="one col-lg-4 col-md-12 col-sm-12 p-0">
-                <img class="img-fluid" src="./imgs/men.png">
-                <div class="details">
-                    <h2>Men</h2>
-                    <button class="btn btn-dark">Shop Now</button>
-                </div>
-            </div>
-            <!-- Women -->
-            <div class="one col-lg-4 col-md-12 col-sm-12 p-0">
-                <img class="img-fluid" src="./imgs/women.png">
-                <div class="details">
-                    <h2>Women</h2>
-                    <button class="btn btn-dark">Shop Now</button>
-                </div>
-            </div>
-            <!-- Kid -->
-            <div class="one col-lg-4 col-md-12 col-sm-12 p-0">
-                <img class="img-fluid" src="./imgs/kid.PNG">
-                <div class="details">
-                    <h2>Kid</h2>
-                    <button class="btn btn-dark">Shop Now</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured -->
-    <section id="featured" class="my-5 pb-5">
-        <div class="container text-center mt-5 py-5">
-            <h3>Our Featured</h3>
-            <hr>
-        </div>
-        <div class="all-prod" id="prodSlider">
-            <div onclick="window.location.href='single_product.html';" class="prod">
-                <img src="./imgs/products/itemld1.png">
-                <div class="prod-info">
-                    <h4 class="prod-title">Item 1</h4>
-                    <p class="prod-price">₱ 800</p>
-                    <a class="prod-btn" href="#">Add To Cart</a>
-                </div>
-            </div>
-
-            <div onclick="window.location.href='single_product.html';" class="prod">
-                <img src="./imgs/products/itemld1.png">
-                <div class="prod-info">
-                    <h4 class="prod-title">Item 1</h4>
-                    <p class="prod-price">₱ 800</p>
-                    <a class="prod-btn" href="#">Add To Cart</a>
-                </div>
-            </div>
-
-            <div onclick="window.location.href='single_product.html';" class="prod">
-                <img src="./imgs/products/itemld1.png">
-                <div class="prod-info">
-                    <h4 class="prod-title">Item 1</h4>
-                    <p class="prod-price">₱ 800</p>
-                    <a class="prod-btn" href="#">Add To Cart</a>
-                </div>
-            </div>
-
-            <div onclick="window.location.href='single_product.html';" class="prod">
-                <img src="./imgs/products/itemld1.png">
-                <div class="prod-info">
-                    <h4 class="prod-title">Item 1</h4>
-                    <p class="prod-price">₱ 800</p>
-                    <a class="prod-btn" href="#">Add To Cart</a>
-                </div>
-            </div>
-
-            <div onclick="window.location.href='single_product.html';" class="prod">
-                <img src="./imgs/products/itemld1.png">
-                <div class="prod-info">
-                    <h4 class="prod-title">Item 1</h4>
-                    <p class="prod-price">₱ 800</p>
-                    <a class="prod-btn" href="#">Add To Cart</a>
-                </div>
-            </div>
-
-            <div onclick="window.location.href='single_product.html';" class="prod">
-                <img src="./imgs/products/itemld1.png">
-                <div class="prod-info">
-                    <h4 class="prod-title">Item 1</h4>
-                    <p class="prod-price">₱ 800</p>
-                    <a class="prod-btn" href="#">Add To Cart</a>
-                </div>
-            </div>
-
-            <div onclick="window.location.href='single_product.html';" class="prod">
-                <img src="./imgs/products/itemld1.png">
-                <div class="prod-info">
-                    <h4 class="prod-title">Item 1</h4>
-                    <p class="prod-price">₱ 800</p>
-                    <a class="prod-btn" href="#">Add To Cart</a>
-                </div>
-            </div>
-
-            <div onclick="window.location.href='single_product.html';" class="prod">
-                <img src="./imgs/products/itemld1.png">
-                <div class="prod-info">
-                    <h4 class="prod-title">Item 1</h4>
-                    <p class="prod-price">₱ 800</p>
-                    <a class="prod-btn" href="#">Add To Cart</a>
-                </div>
-            </div>
-
-            <div onclick="window.location.href='single_product.html';" class="prod">
-                <img src="./imgs/products/itemld1.png">
-                <div class="prod-info">
-                    <h4 class="prod-title">Item 1</h4>
-                    <p class="prod-price">₱ 800</p>
-                    <a class="prod-btn" href="#">Add To Cart</a>
-                </div>
-            </div>
-
-            <div onclick="window.location.href='single_product.html';" class="prod">
-                <img src="./imgs/products/itemld1.png">
-                <div class="prod-info">
-                    <h4 class="prod-title">Item 1</h4>
-                    <p class="prod-price">₱ 800</p>
-                    <a class="prod-btn" href="#">Add To Cart</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="button-container">
-            <button id="prevSlide" class="icon-button" aria-label="Previous">
-                <i class="fa-solid fa-circle-chevron-left"></i>
-            </button>
-            <button id="nextSlide" class="icon-button" aria-label="Next">
-                <i class="fa-solid fa-circle-chevron-right"></i>
-            </button>
-        </div>
-    </section>
-
     <!-- Banner -->
     <section id="banner">
         <div class="container">
@@ -238,7 +122,6 @@ session_start();
             </div>
         </div>
     </section> -->
-
     <?php
     include "Footercontactus.php";
     ?>
