@@ -116,95 +116,7 @@ session_start();
 
             <hr>
             <div class="all-prod" id="prodSlider">
-                <div onclick="window.location.href='single_product.html';" class="prod">
-                    <img src="./imgs/products/itemld1.png">
-                    <div class="prod-info">
-                        <h4 class="prod-title">Item 1</h4>
-                        <p class="prod-price">₱ 800</p>
-                        <a class="prod-btn" href="#">Add To Cart</a>
-                    </div>
-                </div>
-
-                <div onclick="window.location.href='single_product.html';" class="prod">
-                    <img src="./imgs/products/itemld1.png">
-                    <div class="prod-info">
-                        <h4 class="prod-title">Item 1</h4>
-                        <p class="prod-price">₱ 800</p>
-                        <a class="prod-btn" href="#">Add To Cart</a>
-                    </div>
-                </div>
-
-                <div onclick="window.location.href='single_product.html';" class="prod">
-                    <img src="./imgs/products/itemld1.png">
-                    <div class="prod-info">
-                        <h4 class="prod-title">Item 1</h4>
-                        <p class="prod-price">₱ 800</p>
-                        <a class="prod-btn" href="#">Add To Cart</a>
-                    </div>
-                </div>
-
-                <div onclick="window.location.href='single_product.html';" class="prod">
-                    <img src="./imgs/products/itemld1.png">
-                    <div class="prod-info">
-                        <h4 class="prod-title">Item 1</h4>
-                        <p class="prod-price">₱ 800</p>
-                        <a class="prod-btn" href="#">Add To Cart</a>
-                    </div>
-                </div>
-
-                <div onclick="window.location.href='single_product.html';" class="prod">
-                    <img src="./imgs/products/itemld1.png">
-                    <div class="prod-info">
-                        <h4 class="prod-title">Item 1</h4>
-                        <p class="prod-price">₱ 800</p>
-                        <a class="prod-btn" href="#">Add To Cart</a>
-                    </div>
-                </div>
-
-                <div onclick="window.location.href='single_product.html';" class="prod">
-                    <img src="./imgs/products/itemld1.png">
-                    <div class="prod-info">
-                        <h4 class="prod-title">Item 1</h4>
-                        <p class="prod-price">₱ 800</p>
-                        <a class="prod-btn" href="#">Add To Cart</a>
-                    </div>
-                </div>
-
-                <div onclick="window.location.href='single_product.html';" class="prod">
-                    <img src="./imgs/products/itemld1.png">
-                    <div class="prod-info">
-                        <h4 class="prod-title">Item 1</h4>
-                        <p class="prod-price">₱ 800</p>
-                        <a class="prod-btn" href="#">Add To Cart</a>
-                    </div>
-                </div>
-
-                <div onclick="window.location.href='single_product.html';" class="prod">
-                    <img src="./imgs/products/itemld1.png">
-                    <div class="prod-info">
-                        <h4 class="prod-title">Item 1</h4>
-                        <p class="prod-price">₱ 800</p>
-                        <a class="prod-btn" href="#">Add To Cart</a>
-                    </div>
-                </div>
-
-                <div onclick="window.location.href='single_product.html';" class="prod">
-                    <img src="./imgs/products/itemld1.png">
-                    <div class="prod-info">
-                        <h4 class="prod-title">Item 1</h4>
-                        <p class="prod-price">₱ 800</p>
-                        <a class="prod-btn" href="#">Add To Cart</a>
-                    </div>
-                </div>
-
-                <div onclick="window.location.href='single_product.html';" class="prod">
-                    <img src="./imgs/products/itemld1.png">
-                    <div class="prod-info">
-                        <h4 class="prod-title">Item 1</h4>
-                        <p class="prod-price">₱ 800</p>
-                        <a class="prod-btn" href="#">Add To Cart</a>
-                    </div>
-                </div>
+                /** Products inserted here from AJAX */
             </div>
 
             <nav aria-label="Page navigation example">
@@ -294,6 +206,22 @@ session_start();
                         })
                     }
                 })
+            }
+        });
+
+        $.ajax({
+            url: 'getAllProducts.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                if(data.success) {
+                    var html = ''
+                    $.each(data.data, function(index, element) {
+                        console.log(element)
+                        html += '<div class="prod"> <img src="./uploads/'+ element.PROD_IMAGE +'" alt='+ element.PROD_NAME +'> <div class="prod-info">  <h4 class="prod-title">' + element.PROD_NAME + '</h4> <p class="prod-price">₱ '+ element.PROD_PRICE +'</p><a class="prod-btn" href="single_product.php?id=' + element.PROD_ID + '">Add To Cart</a></div></div>';
+                    });
+                    document.getElementById('prodSlider').innerHTML = html
+                }
             }
         });
     </script>

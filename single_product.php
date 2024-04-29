@@ -70,40 +70,35 @@ session_start();
         <div class="row mt-5">
             <div class="col-lg-5 col-md-6 col-sm-12">
                 <img class="img-fluid w-100 pb-1" src="./imgs/products/itemld1.png" id="mainImg">
-                <div class="small-img-group">
+                <!-- <div class="small-img-group">
                     <div class="small-img-col">
-                        <img src="./imgs/products/itemId1.png" width="100%" class="small-img">
+                        <img src="./imgs/products/itemId1.png" width="100%" class="small-img" id="image1">
                     </div>
                     <div class="small-img-col">
-                        <img src="./imgs/products/itemId2.png" width="100%" class="small-img">
+                        <img src="./imgs/products/itemId2.png" width="100%" class="small-img" id="image2">
                     </div>
                     <div class="small-img-col">
-                        <img src="./imgs/products/itemId3.png" width="100%" class="small-img">
+                        <img src="./imgs/products/itemId3.png" width="100%" class="small-img" id="image3">
                     </div>
                     <div class="small-img-col">
-                        <img src="./imgs/products/itemId4.png" width="100%" class="small-img">
+                        <img src="./imgs/products/itemId4.png" width="100%" class="small-img" id="image3">
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="col-lg-6 col-md-12 col-12 pt-5">
                 <h6>Men Shoes</h6>
-                <h3 class="py-4">Men's Fashion</h3>
-                <h2>₱ 800</h2>
-                <h6>Size</h6>
-                <div>
-                    <button class="size-btn">S</button>
-                    <button class="size-btn">M</button>
-                    <button class="size-btn">L</button>
-                    <button class="size-btn">XL</button>
-                </div>
+                <h3 class="py-4" id="product-name">Men's Fashion</h3>
+                <h2 id="product-price">₱ 800</h2>
                 <h6>Quantity</h6>
                 <div>
-                    <button class="size-btn">+</button>
-                    <label for="qty">1</label>
-                    <button class="size-btn">-</button>
+                    <button id="increment" class="size-btn" onclick="increment()">+</button>
+                    <label for="qty">
+                        <input type="number" name="qty" id="qty" value="1" min="1">
+                    </label>
+                    <button id="decrement" class="size-btn" onclick="decrement()">-</button>
                 </div>
-                <button class="prod-btn">Add To Cart</button>
+                <button class="prod-btn" onclick="addToCart()">Add To Cart</button>
             </div>
         </div>
     </section>
@@ -149,12 +144,13 @@ session_start();
     <script>
         var mainImg = document.getElementById("mainImg");
         var smallImg = document.getElementsByClassName("small-img");
-
         for (let i = 0; i < smallImg.length; i++) {
             smallImg[i].addEventListener('click', function() {
                 mainImg.src = smallImg[i].src;
             });
         }
+
+        var product = {}
 
         $('#categories .box-area').slick({
             slidesToShow: 3,
@@ -195,13 +191,13 @@ session_start();
             ]
         });
 
-        document.getElementById('prevSlide').addEventListener('click', function() {
-            $('#prodSlider').slick('slickPrev');
-        });
+        // document.getElementById('prevSlide').addEventListener('click', function() {
+        //     $('#prodSlider').slick('slickPrev');
+        // });
 
-        document.getElementById('nextSlide').addEventListener('click', function() {
-            $('#prodSlider').slick('slickNext');
-        });
+        // document.getElementById('nextSlide').addEventListener('click', function() {
+        //     $('#prodSlider').slick('slickNext');
+        // });
 
         document.addEventListener('DOMContentLoaded', function() {
             let section = document.querySelectorAll('section');
@@ -221,6 +217,52 @@ session_start();
                         })
                     }
                 })
+            }
+        });
+
+        function increment() {
+           document.getElementById('qty').stepUp(1);
+        }
+        function decrement() {
+           document.getElementById('qty').stepDown(1);
+        }
+        function addToCart() {
+            const qty = $('#qty').val();
+            if (qty < 1) {
+                alert('Minimum allowed is 1')
+                return false
+            } else {
+                $.ajax({
+                    url: 'addToCart.php',
+                    data: {
+                        quantity: qty,
+                        productId: "<?= $_GET['id'] ?>",
+                        total: qty * product.PROD_PRICE
+                    },
+                    type: 'POST',
+                    success: function(msg) {
+                        if(msg == 'success') alert('Added')
+                        else alert(msg)
+                    }
+                })
+            }
+        }
+        
+        $.ajax({
+            url: 'getProduct.php',
+            data: {
+                prod_id: <?= $_GET['id'] ?>
+            },
+            dataType: 'json',
+            success: function (result) {
+                if(result.success) {
+                    console.log(result.data);
+                    product = result.data;
+                    document.getElementById('product-name').innerHTML = result.data.PROD_NAME;
+                    document.getElementById('product-price').innerHTML = "₱ " + result.data.PROD_PRICE;
+                    document.getElementById('mainImg').src = "./uploads/" + result.data.PROD_IMAGE;
+                    document.getElementById('mainImg').alt = result.data.PROD_NAME;
+                }
             }
         });
     </script>
