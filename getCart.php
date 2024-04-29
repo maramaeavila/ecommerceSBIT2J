@@ -1,13 +1,11 @@
 <?php 
-
+session_start();
 include "./config/connection.php";
 
-$username = "Sample user";
 $sql = "SELECT * FROM cart INNER JOIN products ON cart.productid = products.prod_id WHERE username = :username";
 $statement = oci_parse($conn, $sql);
 
-// oci_bind_by_name($statement, ':username', $_SESSION['username']);
-oci_bind_by_name($statement, ':username', $username);
+oci_bind_by_name($statement, ':username', $_SESSION['username']);
 $result = oci_execute($statement);
 
 if($result) {
